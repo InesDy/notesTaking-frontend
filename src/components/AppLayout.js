@@ -8,20 +8,20 @@ import NoteList from './NoteList';
 import Note from './Note';
 import NoteEditor from './NoteEditor';
 
-const AppLayout = () => {
+const AppLayout = ({ mockCategories, notes, editor }) => {
     return (
         <div className="app-layout">
             <SideBar>
                 <NotesCategories>
-                    <NoteCategoryLink>
-                        non tague
-                    </NoteCategoryLink>
-                    <NoteCategoryLink>
-                        todo
-                    </NoteCategoryLink>
-                    <NoteCategoryLink>
-                        locked
-                    </NoteCategoryLink>
+                    {mockCategories.map(({ id, caption, icon, to }) => (
+                        <NoteCategoryLink
+                            key={id}
+                            icon={icon}
+                            to={to}
+                        >
+                            {caption}
+                        </NoteCategoryLink>
+                    ))}
                 </NotesCategories>
 
                 <TrashLink />
@@ -29,14 +29,18 @@ const AppLayout = () => {
 
             <Notes>
                 <NoteList>
-                    <Note />
-                    <Note />
-                    <Note />
-                    <Note />
+                    {notes.map(({ id, timeStamp, title, briefText }) => (
+                        <Note
+                            key={id}
+                            timeStamp={timeStamp}
+                            title={title}
+                            briefText={briefText}
+                        />
+                    ))}
                 </NoteList>
             </Notes>
 
-            <NoteEditor />
+            <NoteEditor editor={editor} />
         </div>
     );
 }

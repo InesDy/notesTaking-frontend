@@ -1,10 +1,10 @@
 import React from 'react';
-import AppLayout from './components/AppLayout';
+import AppLayoutContainer from './containers/AppLayoutContainer';
 
 import './App.css';
 
 function App() {
-  return <AppLayout />;
+  return <AppLayoutContainer />;
 }
 
 export default App;

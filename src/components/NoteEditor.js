@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const NoteEditor = () => {
+const NoteEditor = (props) => {
     return (
         <div className="note-editor">
-            Note Editor
+            {props.editor}
         </div>
     );
 };
 
 NoteEditor.propTypes = {
-    children: PropTypes.node,
+    editor: PropTypes.node,
 };
 
 export default NoteEditor;
