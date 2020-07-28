@@ -1,28 +1,55 @@
-import React, { useState } from 'react';
-import AppLayout from '../components/AppLayout';
+import React, { useState, useEffect } from "react";
+import AppLayout from "../components/AppLayout";
 
-import mockCategories from '../mock-data/note-categories';
-import mockNotes from '../mock-data/notes';
+const AppLayoutContainer = ({ mockCategories, mockNotes, mockFolders }) => {
+  const [categories, updateCategories] = useState(mockCategories);
+  const [notes, updateNotes] = useState(mockNotes);
+  const [selectedNote, updateSelectedNote] = useState(null);
+  const [currentSideBarItem, setCurrentSideBarItem] = useState(null);
+  const [folder, updateFolders] = useState(mockFolders);
 
-const AppLayoutContainer = () => {
-    const [ categories, updateCategories ] = useState(mockCategories);
-    const [ notes, updateNotes ] = useState(mockNotes);
-    const [ selectedNote, updateSelectedNote ] = useState(null);
+  console.log("currentSideBarItem", currentSideBarItem);
+  //   useEffect(() => {
 
-    const selectNote = (noteId) => {
-        const note = notes.find(note => note.id === noteId);
+  //   }, [])
+  // addNewNote =(newData) => {
+  //     const newArray = mockFolders;
+  //     newArray.push(newData);
+  //     setState(newArray);
 
-        updateSelectedNote({ ...note });
-    };
+  // }
+  const selectNote = (noteId) => {
+    const note = notes.find((note) => note.id === noteId);
 
-    return (
-        <AppLayout
-            selectNote={selectNote}
-            mockCategories={categories}
-            notes={notes}
-            editor={selectedNote && selectedNote.text}
-        />
-    );
-}
+    updateSelectedNote({ ...note });
+  };
+
+  const handleItemClick = (item) => {
+    setCurrentSideBarItem(item);
+  };
+
+  useEffect(() => {
+    updateFolders(mockFolders);
+  }, []);
+
+  const addNewFolder = (newValue) => {
+    const updatedArray = [...mockFolders];
+    updatedArray.push(newValue);
+    updateFolders(updatedArray);
+  };
+
+  return (
+    <AppLayout
+      selectNote={selectNote}
+      mockCategories={categories}
+      notes={notes}
+      editor={selectedNote && selectedNote.text}
+      mockFolders={mockFolders}
+      handleItemClick={handleItemClick}
+      currentSideBarItem={currentSideBarItem}
+      addNewFolder={addNewFolder}
+    />
+  );
+};
 
 export default AppLayoutContainer;

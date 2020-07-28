@@ -1,0 +1,8 @@
+.SideBar {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background-color: #8d99ae;
+  width: 30vh;
+  height: 100vh;
+}

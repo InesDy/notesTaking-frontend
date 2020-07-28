@@ -1,0 +1,30 @@
+.AppLayout {
+  display: flex;
+}
+.AppLayout-SideBar {
+  align-items: center;
+}
+.AppLayout-SideBarItem {
+  margin-top: 100px;
+}
+
+.AppLayout-SidebarItem-single {
+  text-align: center;
+  border-bottom: solid 1px white;
+  max-width: 100%;
+  margin-top: 6px;
+}
+
+.Notes {
+  max-width: 90vh;
+}
+
+.NoteList-item {
+  border: solid 1px blue;
+  width: 100%;
+}
+
+.NoteList-item p {
+  margin-left: 10px;
+  padding: 20px;
+}

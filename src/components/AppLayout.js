@@ -1,48 +1,70 @@
-import React from 'react';
-import SideBar from './SideBar';
-import NotesCategories from './NotesCategories';
-import NoteCategoryLink from './NoteCategoryLink';
-import TrashLink from './TrashLink';
-import Notes from './Notes';
-import NoteList from './NoteList';
-import Note from './Note';
-import NoteEditor from './NoteEditor';
+import React, { useState } from "react";
+import SideBar from "./SideBar/SideBar";
+import NotesCategories from "./Notes/NotesCategories";
+import TrashLink from "./SideBar/TrashLink";
+import Notes from "./Notes/Notes";
+import NoteList from "./Notes/NoteList";
+import Note from "./Notes/Note";
+import NoteEditor from "./NoteEditor";
+import SideBarItem from "./SideBar/SideBarItem";
+import NewFolderButton from "./SideBar/newFolderButton";
+import SearchBar from "./SearchBar";
 
-const AppLayout = ({ mockCategories, notes, editor }) => {
-    return (
-        <div className="app-layout">
-            <SideBar>
+import "./AppLayout.css";
+
+const AppLayout = ({
+  mockCategories,
+  mockFolders,
+  notes,
+  editor,
+  handleItemClick,
+  addNewFolder,
+  currentSideBarItem,
+}) => {
+  console.log("mockFolders", mockFolders);
+  return (
+    <div className="AppLayout">
+      <div className="AppLayout-SideBar">
+        <SideBar>
+          <div className="AppLayout-SideBarItem">
+            {mockFolders.map((child) => {
+              return (
+                <div className="AppLayout-SidebarItem-single">
+                  <SideBarItem data={child} handleItemClick={handleItemClick} />
+                </div>
+              );
+            })}
+          </div>
+          <NewFolderButton />
+        </SideBar>
+      </div>
+
+      <Notes className="Notes">
+        {currentSideBarItem && (
+          <div>
+            <NoteList>
+              <div className="NoteList">
                 <NotesCategories>
-                    {mockCategories.map(({ id, caption, icon, to }) => (
-                        <NoteCategoryLink
-                            key={id}
-                            icon={icon}
-                            to={to}
-                        >
-                            {caption}
-                        </NoteCategoryLink>
-                    ))}
+                  {currentSideBarItem &&
+                    currentSideBarItem.notes.map((note) => {
+                      return (
+                        <div className="NoteList-item">
+                          <p>{note}</p>
+                        </div>
+                      );
+                    })}
                 </NotesCategories>
+              </div>
+            </NoteList>
+          </div>
+        )}
+      </Notes>
 
-                <TrashLink />
-            </SideBar>
-
-            <Notes>
-                <NoteList>
-                    {notes.map(({ id, timeStamp, title, briefText }) => (
-                        <Note
-                            key={id}
-                            timeStamp={timeStamp}
-                            title={title}
-                            briefText={briefText}
-                        />
-                    ))}
-                </NoteList>
-            </Notes>
-
-            <NoteEditor editor={editor} />
-        </div>
-    );
-}
+      <div>
+        <NoteEditor editor={editor} />
+      </div>
+    </div>
+  );
+};
 
 export default AppLayout;
