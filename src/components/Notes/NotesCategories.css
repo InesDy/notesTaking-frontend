@@ -1,5 +1,6 @@
-.NotesCategories {
-  background-color: #c9d8f1;
-  width: 40vh;
-  height: 100vh;
-}
+  .NotesCategories {
+    background-color: rgb(65, 65, 65);
+    /* width: 40vh; */
+    height: 100vh;
+
+  }

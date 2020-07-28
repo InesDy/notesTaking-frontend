@@ -28,14 +28,12 @@ const AppLayoutContainer = ({ mockCategories, mockNotes, mockFolders }) => {
     setCurrentSideBarItem(item);
   };
 
-  useEffect(() => {
-    updateFolders(mockFolders);
-  }, []);
+  // useEffect(() => {
+  //   updateFolders(mockFolders);
+  // }, [mockFolders]);
 
   const addNewFolder = (newValue) => {
-    const updatedArray = [...mockFolders];
-    updatedArray.push(newValue);
-    updateFolders(updatedArray);
+    updateFolders([...mockFolders, { title: newValue }]);
   };
 
   return (

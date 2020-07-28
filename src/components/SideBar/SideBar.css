@@ -1,8 +1,13 @@
+.AppLayout-SideBar {
+  width: 250px;
+}
+
+
 .SideBar {
   display: flex;
   flex-direction: column;
   padding: 0;
   background-color: #8d99ae;
-  width: 30vh;
+  width: 100%;
   height: 100vh;
 }

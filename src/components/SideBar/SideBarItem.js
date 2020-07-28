@@ -7,9 +7,7 @@ const SidebarItem = ({ data, handleItemClick }) => {
   // in order to be able to close it again (!toggle) donc true
   // onClick on second div = will toggle with child on click on the text not div
   // toggle if toggle is true alors map
-  const hello = {
-    title: "hello",
-  };
+
   const handleClick = () => {
     setToggle(!toggle);
     if (!data.childItems) {

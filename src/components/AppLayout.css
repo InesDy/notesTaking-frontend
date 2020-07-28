@@ -1,9 +1,11 @@
 .AppLayout {
   display: flex;
 }
+
 .AppLayout-SideBar {
   align-items: center;
 }
+
 .AppLayout-SideBarItem {
   margin-top: 100px;
 }
@@ -12,15 +14,14 @@
   text-align: center;
   border-bottom: solid 1px white;
   max-width: 100%;
-  margin-top: 6px;
 }
 
-.Notes {
+/* .Notes {
   max-width: 90vh;
-}
+} */
 
 .NoteList-item {
-  border: solid 1px blue;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   width: 100%;
 }
 

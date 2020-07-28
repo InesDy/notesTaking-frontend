@@ -9,13 +9,21 @@ const NewFolderButton = ({ addNewFolder }) => {
   // const [folder, newFolder] = useState(true);
 
   const onChangeInputField = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     changeInputValue(event.target.value);
   };
 
   // const storeValue = () => {
   //   localStorage.setItem("name", inputValue);
   // };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    addNewFolder(inputValue);
+    showInputField(false);
+    changeInputValue("");
+  };
 
   return (
     <div className="NewFolderButton">
@@ -25,21 +33,14 @@ const NewFolderButton = ({ addNewFolder }) => {
       ></AddCircleIcon>
       {inputField ? (
         <div className="newFolderButton_input">
-          <input
-            type="text"
-            placeholder="Name of the folder"
-            value={inputValue}
-            onChange={onChangeInputField}
-            onKeyPress={(event) => {
-              if (event.key === "Enter") {
-                // storeValue();
-                {
-                  addNewFolder();
-                }
-              }
-              changeInputValue("");
-            }}
-          />
+          <form onSubmit={onSubmitHandler}>
+            <input
+              type="text"
+              placeholder="Name of the folder"
+              value={inputValue}
+              onChange={onChangeInputField}
+            />
+          </form>
         </div>
       ) : null}
     </div>

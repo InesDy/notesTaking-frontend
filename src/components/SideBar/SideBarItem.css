@@ -4,23 +4,15 @@
   color: rgb(255, 255, 255);
 }
 
-.SidebarItem:hover {
-  background: #c9d8f1;
+.SidebarItem__caption {
+  cursor: pointer;
+}
+
+.SidebarItem__caption:hover {
+  background: #7e94ba;
   transition-duration: 500ms;
 }
 
-.SidebarItem::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-}
 
-.SidebarItem {
-  z-index: 1;
-}
 
 /* style={{ height: "100vh", width: "25vh", backgroundColor: "#8d99ae" }} */

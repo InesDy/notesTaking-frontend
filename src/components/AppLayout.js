@@ -10,59 +10,30 @@ import SideBarItem from "./SideBar/SideBarItem";
 import NewFolderButton from "./SideBar/newFolderButton";
 import SearchBar from "./SearchBar";
 
+import Navigation from "./Navigation/Navigation";
+
 import "./AppLayout.css";
 
 const AppLayout = ({
   mockCategories,
-  mockFolders,
+  mockFolders: folders,
   notes,
   editor,
   handleItemClick,
   addNewFolder,
   currentSideBarItem,
 }) => {
-  console.log("mockFolders", mockFolders);
   return (
     <div className="AppLayout">
-      <div className="AppLayout-SideBar">
-        <SideBar>
-          <div className="AppLayout-SideBarItem">
-            {mockFolders.map((child) => {
-              return (
-                <div className="AppLayout-SidebarItem-single">
-                  <SideBarItem data={child} handleItemClick={handleItemClick} />
-                </div>
-              );
-            })}
-          </div>
-          <NewFolderButton />
-        </SideBar>
-      </div>
+      <SideBar>
+        <Navigation folders={folders} handleItemClick={handleItemClick} />
 
-      <Notes className="Notes">
-        {currentSideBarItem && (
-          <div>
-            <NoteList>
-              <div className="NoteList">
-                <NotesCategories>
-                  {currentSideBarItem &&
-                    currentSideBarItem.notes.map((note) => {
-                      return (
-                        <div className="NoteList-item">
-                          <p>{note}</p>
-                        </div>
-                      );
-                    })}
-                </NotesCategories>
-              </div>
-            </NoteList>
-          </div>
-        )}
-      </Notes>
+        <NewFolderButton addNewFolder={addNewFolder} />
+      </SideBar>
 
-      <div>
-        <NoteEditor editor={editor} />
-      </div>
+      <Notes className="Notes" currentSideBarItem={currentSideBarItem} />
+
+      <NoteEditor editor={editor} />
     </div>
   );
 };

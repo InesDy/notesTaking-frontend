@@ -6,9 +6,14 @@ export default [
     childItems: [
       {
         id: "01",
-        title: "non tague",
-        icon: "inbox",
-        to: "/nontague",
+        title: "Today",
+        icon: "flower",
+        notes: ["This is a note", "This is also a note", "This is not a note"],
+      },
+      {
+        id: "01",
+        title: "Todo",
+        icon: "Checkbox",
         notes: ["This is a note", "This is also a note", "This is not a note"],
       },
     ],
