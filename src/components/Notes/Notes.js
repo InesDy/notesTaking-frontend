@@ -6,7 +6,7 @@ import NoteList from "./NoteList";
 
 import "./Notes.css";
 
-const Notes = ({ currentSideBarItem }) => {
+const Notes = ({ currentSideBarItem, selectNote }) => {
   const className = `Notes ${!currentSideBarItem ? "Notes_notSelected" : ""}`;
 
   return (
@@ -17,8 +17,15 @@ const Notes = ({ currentSideBarItem }) => {
             {currentSideBarItem &&
               currentSideBarItem.notes.map((note) => {
                 return (
-                  <div className="NoteList-item">
-                    <p>{note}</p>
+                  <div
+                    className="NoteList-item"
+                    onClick={() => {
+                      selectNote(note.id);
+                    }}
+                  >
+                    <p>{note.timeStamp}</p>
+                    <h4>{note.title}</h4>
+                    <p>{note.content}</p>
                   </div>
                 );
               })}

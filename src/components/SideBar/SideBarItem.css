@@ -1,7 +1,7 @@
 .SidebarItem {
-  background: #8d99ae;
+  background: rgba(45, 45, 45);
   padding: 8px;
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .SidebarItem__caption {
@@ -9,10 +9,8 @@
 }
 
 .SidebarItem__caption:hover {
-  background: #7e94ba;
+  background: rgba(255, 255, 255);
   transition-duration: 500ms;
 }
-
-
 
 /* style={{ height: "100vh", width: "25vh", backgroundColor: "#8d99ae" }} */

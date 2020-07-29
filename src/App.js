@@ -3,7 +3,7 @@ import AppLayoutContainer from "./containers/AppLayoutContainer";
 import mockCategories from "./mock-data/note-categories";
 import mockNotes from "./mock-data/notes";
 import mockFolders from "./mock-data/folders";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./components/Authentication/LoginPage";
 
 import "./App.css";
 

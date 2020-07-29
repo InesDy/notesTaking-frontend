@@ -19,13 +19,12 @@
   margin-top: 10px;
   padding: 5px;
   border: none;
-  background-color: #8d99ae;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.5);
   outline: none;
-  border: 0.5px solid white;
-  width: 100%;
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
 }
 
-.newFolderButton_input input placeholder {
-  color: aqua;
+input {
+  width: 100%;
 }

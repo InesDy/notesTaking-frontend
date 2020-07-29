@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./SideBarItem.css";
 
-const SidebarItem = ({ data, handleItemClick }) => {
+const SidebarItem = ({ data, handleItemClick, currentSideBarItem }) => {
   const [toggle, setToggle] = useState(false);
 
   // in order to be able to close it again (!toggle) donc true
@@ -23,6 +23,7 @@ const SidebarItem = ({ data, handleItemClick }) => {
           return (
             <SidebarItem
               className="SidebarItem-single"
+              currentSideBarItem={currentSideBarItem}
               data={item}
               handleItemClick={handleItemClick}
             />
@@ -33,16 +34,3 @@ const SidebarItem = ({ data, handleItemClick }) => {
 };
 
 export default SidebarItem;
-
-{
-  /* <div
-              style={{
-                color: "white",
-                background: "#375a6f",
-                margin: "auto",
-                opacity: "0.8",
-              }}
-            >
-              {item}
-            </div> */
-}

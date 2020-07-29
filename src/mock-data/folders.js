@@ -5,24 +5,68 @@ export default [
     icon: "round",
     childItems: [
       {
-        id: "01",
+        id: "02",
         title: "Today",
         icon: "flower",
-        notes: ["This is a note", "This is also a note", "This is not a note"],
+        notes: [
+          {
+            id: "1",
+            timeStamp: "1h",
+            title: "The first 30 characters of the editor",
+            content: "This is a note",
+          },
+          {
+            id: "3",
+            timeStamp: "1h",
+            title: "Coding I love it but",
+            content: "What a struggle",
+          },
+          {
+            id: "2",
+            timeStamp: "1h",
+            title: "Hopefully I'll",
+            content: "Hopefully I'll get help",
+          },
+        ],
       },
+
       {
-        id: "01",
-        title: "Todo",
-        icon: "Checkbox",
-        notes: ["This is a note", "This is also a note", "This is not a note"],
+        id: "04",
+        title: "All",
+        icon: "..",
+        notes: [
+          {
+            id: "1",
+            timeStamp: "2d",
+            title: "The first 30 characters of the editor",
+            content: "Why don't we have magic power",
+          },
+          {
+            id: "2",
+            timeStamp: "10 sec",
+            title: "Inès Dyll",
+            content: "Inès Dyll",
+          },
+        ],
       },
     ],
   },
   {
-    id: "02",
+    id: "04",
     title: "Trash",
     icon: "trash",
-    childItems: [false],
-    Notes: ["Hey mate", "whats up", "This is not a note"],
+    childItems: [
+      {
+        id: "05",
+        notes: [
+          {
+            id: "1",
+            timeStamp: "10 sec",
+            title: "Inès Dyll",
+            content: "Inès Dyll",
+          },
+        ],
+      },
+    ],
   },
 ];

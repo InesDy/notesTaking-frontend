@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import AppLayout from "../components/AppLayout";
+import AppLayout from "../components/AppLayout/AppLayout";
 
 const AppLayoutContainer = ({ mockCategories, mockNotes, mockFolders }) => {
   const [categories, updateCategories] = useState(mockCategories);
-  const [notes, updateNotes] = useState(mockNotes);
+  const [notes, updateNotes] = useState([]);
   const [selectedNote, updateSelectedNote] = useState(null);
   const [currentSideBarItem, setCurrentSideBarItem] = useState(null);
-  const [folder, updateFolders] = useState(mockFolders);
+  const [folders, updateFolders] = useState(mockFolders);
 
   console.log("currentSideBarItem", currentSideBarItem);
   //   useEffect(() => {
@@ -19,13 +19,18 @@ const AppLayoutContainer = ({ mockCategories, mockNotes, mockFolders }) => {
 
   // }
   const selectNote = (noteId) => {
-    const note = notes.find((note) => note.id === noteId);
-
+    const note = notes.find((notes) => notes.id === noteId);
+    console.log(note);
+    console.log(notes);
     updateSelectedNote({ ...note });
   };
 
   const handleItemClick = (item) => {
     setCurrentSideBarItem(item);
+    if (item.notes) {
+      updateNotes(item.notes);
+    }
+    console.log(item);
   };
 
   // useEffect(() => {
@@ -41,8 +46,9 @@ const AppLayoutContainer = ({ mockCategories, mockNotes, mockFolders }) => {
       selectNote={selectNote}
       mockCategories={categories}
       notes={notes}
+      selectedNote={selectedNote}
       editor={selectedNote && selectedNote.text}
-      mockFolders={mockFolders}
+      folders={folders}
       handleItemClick={handleItemClick}
       currentSideBarItem={currentSideBarItem}
       addNewFolder={addNewFolder}
