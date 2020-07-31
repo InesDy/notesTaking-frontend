@@ -9,18 +9,20 @@ const AppLayoutContainer = ({ mockCategories, mockFolders }) => {
   const [folders, updateFolders] = useState(mockFolders);
   const [contentNote, updatedContentNote] = useState({});
 
+  // Use for the NoteEditor.js
   const changeContentNote = (noteText) => {
+    console.log("noteText", noteText);
+
     const title = noteText.split("\n")[0];
 
     const updateContent = {
       title: title,
       content: noteText,
     };
-    updatedContentNote(updateContent);
+    updateSelectedNote({ ...selectedNote, ...updateContent });
   };
 
-  console.log("currentSideBarItem", currentSideBarItem);
-
+  //To know which note is selected
   const selectNote = (noteId) => {
     const note = notes.find((notes) => notes.id === noteId);
     console.log(note);
@@ -28,6 +30,9 @@ const AppLayoutContainer = ({ mockCategories, mockFolders }) => {
     updateSelectedNote({ ...note });
   };
 
+  /**To know which current folders is clicked on
+   *in order to display its children- here the array of notes.
+   */
   const handleItemClick = (item) => {
     setCurrentSideBarItem(item);
     if (item.notes) {
@@ -35,22 +40,26 @@ const AppLayoutContainer = ({ mockCategories, mockFolders }) => {
     }
     console.log(item);
   };
+  console.log("currentSideBarItem", currentSideBarItem);
 
+  //Use in the NewFolderButton.js
   const addNewFolder = (newValue) => {
     updateFolders([...mockFolders, { title: newValue }]);
   };
 
   return (
     <AppLayout
+      //General props
+      folders={folders}
       selectNote={selectNote}
       mockCategories={categories}
-      notes={notes}
       selectedNote={selectedNote}
-      editor={selectedNote && selectedNote.text}
-      folders={folders}
       handleItemClick={handleItemClick}
       currentSideBarItem={currentSideBarItem}
+      //NewFolderButton props
       addNewFolder={addNewFolder}
+      //Editor props
+      editor={selectedNote && selectedNote.text}
       contentNote={contentNote}
       changeContentNote={changeContentNote}
     />

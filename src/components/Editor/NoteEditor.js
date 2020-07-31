@@ -8,9 +8,14 @@ import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "./NoteEditor.css";
 
+let timer;
+
 const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
   const className = `NoteEditor ${!selectedNote ? "NoteEditor_noNotes" : ""}`;
 
+  /**Initial state is determined with a if statement-  if there is a
+   * note selected and this note has children then display  the content
+   */
   let initialEditorState;
   if (selectedNote && selectedNote.content) {
     initialEditorState = EditorState.createWithContent(
@@ -22,25 +27,38 @@ const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
     );
   }
 
+  /**Allows the change in the editor and keep the state after 3 seconds
+   * The timer starts over when a new change is made
+   * */
   const onEditorChange = (newEditorState) => {
     updateEditorState(newEditorState);
     const value = draftToMarkdown(
       convertToRaw(newEditorState.getCurrentContent())
     );
-    console.log(newEditorState);
-    // onChange(value);
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      console.log(newEditorState);
+      onChange(value);
+    }, 3000);
   };
 
   const [editorState, updateEditorState] = useState(initialEditorState);
 
-  // const onEditorStateChange = (newEditorState) => {
-  //   updateEditorState(newEditorState);
-  //   const value = draftToMarkdown(
-  //     convertToRaw(newEditorState.getCurrentContent())
-  //   );
-  //   onChange(value);
-  //   console.log(newEditorState);
-  // };
+  /**
+   * On `selectedNote` prop change, re-init editor state
+   * update everyytimne there is a change in the content of the current selected note and update it by mounting it again
+   */
+  useEffect(() => {
+    if (selectedNote && selectedNote.content) {
+      updateEditorState(
+        EditorState.createWithContent(
+          convertFromRaw(markdownToDraft(selectedNote.content))
+        )
+      );
+    }
+  }, [selectedNote]);
 
   return (
     <div className={className}>
@@ -63,6 +81,3 @@ NoteEditor.propTypes = {
 };
 
 export default NoteEditor;
-
-// <h4>{selectedNote.title}</h4>
-// <p>{selectedNote.content}</p>

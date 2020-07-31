@@ -15,17 +15,17 @@ import Navigation from "../Navigation/Navigation";
 import "./AppLayout.css";
 
 const AppLayout = ({
-  mockCategories,
   folders,
-  notes,
-  editor,
   handleItemClick,
-  addNewFolder,
+  //generic
   currentSideBarItem,
   onSubmitHandler,
   selectedNote,
   selectNote,
   itemSelected,
+  //specific
+  addNewFolder,
+  editor,
   contentNote,
   changeContentNote,
 }) => {
