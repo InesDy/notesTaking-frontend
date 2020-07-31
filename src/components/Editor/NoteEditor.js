@@ -8,6 +8,8 @@ import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import "./NoteEditor.css";
 
+let timer;
+
 const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
   const className = `NoteEditor ${!selectedNote ? "NoteEditor_noNotes" : ""}`;
 
@@ -27,11 +29,27 @@ const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
     const value = draftToMarkdown(
       convertToRaw(newEditorState.getCurrentContent())
     );
-    console.log(newEditorState);
-    // onChange(value);
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      console.log(newEditorState);
+      onChange(value);
+    }, 3000);
   };
 
   const [editorState, updateEditorState] = useState(initialEditorState);
+
+  /**
+   * On `selectedNote` prop change, re-init editor state
+   */
+  useEffect(() => {
+    if (selectedNote && selectedNote.content) {
+      updateEditorState(EditorState.createWithContent(
+        convertFromRaw(markdownToDraft(selectedNote.content))
+      ));
+    }
+  }, [selectedNote]);
 
   // const onEditorStateChange = (newEditorState) => {
   //   updateEditorState(newEditorState);

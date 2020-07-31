@@ -48,6 +48,7 @@ const AppLayout = ({
       />
 
       <NoteEditor
+        key={selectedNote}
         onChange={changeContentNote}
         initialValue={contentNote.content}
         editor={editor}

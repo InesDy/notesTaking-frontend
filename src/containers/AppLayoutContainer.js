@@ -10,13 +10,17 @@ const AppLayoutContainer = ({ mockCategories, mockFolders }) => {
   const [contentNote, updatedContentNote] = useState({});
 
   const changeContentNote = (noteText) => {
+    console.log('noteText', noteText);
+
     const title = noteText.split("\n")[0];
 
     const updateContent = {
       title: title,
       content: noteText,
     };
-    updatedContentNote(updateContent);
+    // updatedContentNote(updateContent);
+
+    updateSelectedNote({ ...selectedNote, ...updateContent })
   };
 
   console.log("currentSideBarItem", currentSideBarItem);
