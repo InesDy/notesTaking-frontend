@@ -1,0 +1,15 @@
+input {
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  border: none;
+  padding: 8px;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10px;
+  margin-left: 35px;
+}
+
+input::placeholder {
+  padding: 20px;
+}

@@ -26,6 +26,8 @@ const AppLayout = ({
   selectedNote,
   selectNote,
   itemSelected,
+  contentNote,
+  changeContentNote,
 }) => {
   return (
     <div className="AppLayout">
@@ -45,7 +47,12 @@ const AppLayout = ({
         selectNote={selectNote}
       />
 
-      <NoteEditor editor={editor} selectedNote={selectedNote} />
+      <NoteEditor
+        onChange={changeContentNote}
+        initialValue={contentNote.content}
+        editor={editor}
+        selectedNote={selectedNote}
+      />
     </div>
   );
 };

@@ -8,9 +8,4 @@
   cursor: pointer;
 }
 
-.SidebarItem__caption:hover {
-  background: rgba(255, 255, 255);
-  transition-duration: 500ms;
-}
-
 /* style={{ height: "100vh", width: "25vh", backgroundColor: "#8d99ae" }} */

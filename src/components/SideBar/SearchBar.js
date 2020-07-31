@@ -1,9 +1,10 @@
 import React from "react";
+import "./SearchBar.css";
 
 const SearchBar = () => {
   return (
     <div>
-      <input style={{ padding: "5px" }} type="text" placeholder="search..." />
+      <input type="text" placeholder="search..." />
     </div>
   );
 };
