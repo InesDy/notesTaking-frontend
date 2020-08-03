@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import AppLayoutContainer from "./containers/AppLayoutContainer";
-import mockCategories from "./mock-data/note-categories";
-import mockFolders from "./mock-data/folders";
+import AppLayout from "./components/AppLayout/AppLayout";
 import LoginPage from "./components/Authentication/LoginPage";
 
 import "./App.css";
@@ -9,18 +7,7 @@ import "./App.css";
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
 
-  return (
-    <>
-      {loggedIn ? (
-        <AppLayoutContainer
-          mockCategories={mockCategories}
-          mockFolders={mockFolders}
-        />
-      ) : (
-        <LoginPage />
-      )}
-    </>
-  );
+  return <>{loggedIn ? <AppLayout /> : <LoginPage />}</>;
 }
 
 export default App;

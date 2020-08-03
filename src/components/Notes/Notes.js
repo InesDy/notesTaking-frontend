@@ -1,46 +1,40 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-import NotesCategories from "./NotesCategories";
-import NoteList from "./NoteList";
-
+// import CreateNoteButton from "../SideBar/2nd level/CreateNoteButton";
 import "./Notes.css";
 
-const Notes = ({ currentSideBarItem, selectNote }) => {
-  const className = `Notes ${!currentSideBarItem ? "Notes_notSelected" : ""}`;
+{
+  /* <CreateNoteButton
+            currentSideBarItem={currentSideBarItem}
+          ></CreateNoteButton> */
+}
+
+const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
+  const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
 
   return (
-    <div className={className}>
-      {currentSideBarItem && (
-        <NoteList>
-          <NotesCategories className="NoteCategories">
-            {currentSideBarItem &&
-              currentSideBarItem.notes.map((note) => {
-                return (
-                  <div
-                    className="NoteList-item"
-                    onClick={() => {
-                      selectNote(note.id);
-                    }}
-                  >
-                    <p>{note.timeStamp}</p>
-                    <h4>{note.title}</h4>
-                    <p>{note.content}</p>
-                  </div>
-                );
-              })}
-          </NotesCategories>
-        </NoteList>
-      )}
-
-      {!currentSideBarItem && "Nothing selected"}
+    <div className="NoteList">
+      <div className={className}>
+        {noteList &&
+          noteList.map((note) => (
+            <div
+              className="Notes-item"
+              key={note.id}
+              onClick={() => updateSelectedNote(note)}
+            >
+              {!selectedNote && note.text.slice(0, 30) + "..."}
+              {selectedNote &&
+                selectedNote.id !== note.id &&
+                note.text.slice(0, 50) + "..."}
+              {selectedNote &&
+                selectedNote.id === note.id &&
+                selectedNote.text.slice(0, 50) + "..."}
+              )};
+            </div>
+          ))}
+        {!noteList && "Nothing selected"}
+      </div>
     </div>
   );
 };
 
-Notes.propTypes = {
-  children: PropTypes.node,
-  currentSideBarItem: PropTypes.any,
-};
-
-export default Notes;
+export default NoteList;
