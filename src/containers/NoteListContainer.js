@@ -14,8 +14,11 @@ const NoteListContainer = ({
       (note) => selectedNote.id === note.id
     );
     const updatedNoteList = [...noteList];
-    updatedNoteList[selectedNoteIndex].text = selectedNote.text;
-    updateNoteList(noteList);
+
+    if (updatedNoteList[selectedNoteIndex]) {
+      updatedNoteList[selectedNoteIndex].text = selectedNote.text;
+      updateNoteList(noteList);
+    }
   };
 
   useEffect(() => {

@@ -28,7 +28,6 @@ const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
               {selectedNote &&
                 selectedNote.id === note.id &&
                 selectedNote.text.slice(0, 50) + "..."}
-              )};
             </div>
           ))}
         {!noteList && "Nothing selected"}
