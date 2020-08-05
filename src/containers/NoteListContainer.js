@@ -44,6 +44,14 @@ const NoteListContainer = ({
       });
   }, [selectedFolder.id]); // eslint-disable-line
 
+  //Optimistic rendering for UI
+  const UpdateStateNote = (text) => {
+    const newNote = [...noteList];
+    const newID = new Date().toISOString();
+    newNote.push({ text, id: newID });
+    updateNoteList(newNote);
+  };
+
   return (
     <div>
       {fetchStatus === "STARTED" && console.log("Loading notes...")}
@@ -53,6 +61,7 @@ const NoteListContainer = ({
           noteList={noteList}
           selectedNote={selectedNote}
           updateSelectedNote={updateSelectedNote}
+          UpdateStateNote={UpdateStateNote}
         />
       )}
     </div>

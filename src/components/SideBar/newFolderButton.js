@@ -19,7 +19,7 @@ const NewFolderButton = ({ UpdateStateFolder }) => {
     showInputField(false);
 
     updateFetchStatus("STARTED");
-    // ${folder.id}
+
     fetch(`http://localhost:1337/folders`, {
       method: "POST",
       headers: {

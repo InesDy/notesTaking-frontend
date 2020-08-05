@@ -38,10 +38,10 @@ span {
   background-color: white;
   color: rgb(24, 24, 24);
   width: 160px;
-  font-size: 18.5px;
+  font-size: 16px;
   margin-top: 40px;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 10px;
   font-weight: 900;
   align-self: center;
 }
@@ -77,10 +77,10 @@ label {
   color: #294c60;
   width: 160px;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 30px;
   padding: 10px;
-  border-radius: 30px;
+  border-radius: 10px;
   font-weight: 900;
   align-self: center;
 }

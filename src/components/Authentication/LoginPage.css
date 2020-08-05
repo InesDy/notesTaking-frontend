@@ -79,9 +79,9 @@ button {
   background-color: white;
   width: 130px;
   color: rgb(24, 24, 24);
-  border-radius: 30px;
+  border-radius: 10px;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 16px;
   width: 160px;
   box-shadow: 2px 2px rgb(74, 71, 71);
   align-self: center;

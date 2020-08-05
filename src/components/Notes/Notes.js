@@ -1,16 +1,26 @@
 import React from "react";
-import CreateNoteButton from "../SideBar/CreateNoteButton";
+import CreateNoteButton from "./CreateNoteButton";
 
 import "./Notes.css";
 
-const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
+const NoteList = ({
+  noteList = [],
+  selectedNote,
+  updateSelectedNote,
+  UpdateStateNote,
+}) => {
   const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
 
   return (
     <div className="NoteList">
       <div className={className}>
         <div className="NoteList_CreateNoteButton">
-          <CreateNoteButton className="CreateNoteButton"> </CreateNoteButton>
+          <CreateNoteButton
+            className="CreateNoteButton"
+            UpdateStateNote={UpdateStateNote}
+          >
+            {" "}
+          </CreateNoteButton>
         </div>
         {noteList &&
           noteList.map((note) => (
