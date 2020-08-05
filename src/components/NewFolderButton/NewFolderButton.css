@@ -1,0 +1,29 @@
+.NewFolderButton {
+    display: flex;
+    flex-direction: column;
+    margin: 50px 20px 60px 20px;
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .NewFolderButton-button {
+    align-self: center;
+  }
+
+  .NewFolderButton-button:hover {
+    color: #ffc49b;
+  }
+
+  .newFolderButton_input input {
+    margin-top: 10px;
+    padding: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.5);
+    outline: none;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+  }
+
+  input {
+    width: 100%;
+  }

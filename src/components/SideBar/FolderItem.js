@@ -1,17 +1,19 @@
 import React from "react";
 import "./FolderItem.css";
-import NewFolderButton from "./NewFolderButton";
+// import NewFolderButton from "./NewFolderButton";
+
+import NewFolderButtonContainer from '../../containers/NewFolderButtonContainer';
 
 const FolderItem = ({
   folders = [],
   selectedFolder,
   updateSelectedFolder,
-  UpdateStateFolder,
+  fetchFolders,
 }) => {
   console.log(folders);
   return (
     <div className="FolderItem">
-      <NewFolderButton UpdateStateFolder={UpdateStateFolder}></NewFolderButton>
+      <NewFolderButtonContainer fetchFolders={fetchFolders} />
       {folders instanceof Array &&
         folders.map((folder) => (
           <div

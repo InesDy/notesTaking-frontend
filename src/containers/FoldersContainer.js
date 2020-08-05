@@ -9,7 +9,7 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
 
   const loginResult = useContext(UserContext);
 
-  const getUpdatedFolder = () => {
+  const fetchFolders = () => {
     updateFetchStatus("STARTED");
 
     fetch("http://localhost:1337/folders", {
@@ -29,24 +29,17 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
   };
 
   useEffect(() => {
-    getUpdatedFolder();
+    fetchFolders();
   }, []); // eslint-disable-line
 
-  //Optimistic rendering for UI
-  const UpdateStateFolder = (name) => {
-    const newFolders = [...folders];
-    const newID = new Date().toISOString();
-    newFolders.push({ name, id: newID });
-    updateFolders(newFolders);
-  };
 
   return (
     <div>
-      {fetchStatus === "STARTED" && <div>Loading folders...</div>}
+      {/* {fetchStatus === "STARTED" && <div>Loading folders...</div>} */}
 
-      {fetchStatus === "SUCCEED" && (
+      {(fetchStatus === "SUCCEED" || folders.length) && (
         <FolderItem
-          UpdateStateFolder={UpdateStateFolder}
+          fetchFolders={fetchFolders}
           folders={folders}
           selectedFolder={selectedFolder}
           updateSelectedFolder={updateSelectedFolder}
