@@ -48,6 +48,26 @@ const NoteListContainer = ({
       });
   };
 
+  const onDeleteButtonClick = (noteId) => {
+    updateFetchStatus("STARTED");
+
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        fetchNoteList();
+        updateFetchStatus("SUCCEED");
+      })
+      .catch((err) => {
+        updateFetchStatus("FAILED");
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     fetchNoteList();
   }, [selectedFolder.id]); // eslint-disable-line
@@ -63,6 +83,7 @@ const NoteListContainer = ({
           selectedNote={selectedNote}
           updateSelectedNote={updateSelectedNote}
           updateNoteList={fetchNoteList}
+          onDeleteButtonClick={onDeleteButtonClick}
         />
       )}
     </div>

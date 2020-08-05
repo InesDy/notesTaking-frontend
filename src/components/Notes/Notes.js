@@ -1,8 +1,9 @@
 import React from "react";
-// import CreateNoteButton from "./CreateNoteButton";
+
+import CreateNoteButtonContainer from "../../containers/CreateNoteButtonContainer";
+import NoteItem from '../../components/NoteItem/NoteItem';
 
 import "./Notes.css";
-import CreateNoteButtonContainer from "../../containers/CreateNoteButtonContainer";
 
 const Notes = ({
   noteList = [],
@@ -10,6 +11,7 @@ const Notes = ({
   updateSelectedNote,
   updateNoteList,
   selectedFolder,
+  onDeleteButtonClick,
 }) => {
   const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
 
@@ -17,12 +19,6 @@ const Notes = ({
     <div className="NoteList">
       <div className={className}>
         <div className="NoteList_CreateNoteButton">
-          {/* <CreateNoteButton
-            className="CreateNoteButton"
-            updateStateNote={updateStateNote}
-          >
-            {" "}
-          </CreateNoteButton> */}
           <CreateNoteButtonContainer
             updateNoteList={updateNoteList}
             selectedFolder={selectedFolder}
@@ -31,19 +27,12 @@ const Notes = ({
         </div>
         {noteList &&
           noteList.map((note) => (
-            <div
-              className="Notes-item"
-              key={note.id}
-              onClick={() => updateSelectedNote(note)}
-            >
-              {!selectedNote && note.text.slice(0, 30) + "..."}
-              {selectedNote &&
-                selectedNote.id !== note.id &&
-                note.text.slice(0, 50) + "..."}
-              {selectedNote &&
-                selectedNote.id === note.id &&
-                selectedNote.text.slice(0, 50) + "..."}
-            </div>
+            <NoteItem
+              note={note}
+              updateSelectedNote={updateSelectedNote}
+              selectedNote={selectedNote}
+              onDeleteButtonClick={onDeleteButtonClick}
+            />
           ))}
         {!noteList && "Nothing selected"}
       </div>
