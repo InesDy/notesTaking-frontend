@@ -45,6 +45,8 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
           updateSelectedFolder={updateSelectedFolder}
         />
       )}
+
+      <button onClick={loginResult.logOff}>Logout</button>
     </div>
   );
 };

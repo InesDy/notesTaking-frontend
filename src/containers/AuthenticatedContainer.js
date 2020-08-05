@@ -16,8 +16,14 @@ const AuthenticatedContainer = (props) => {
 
   const [loginResult, setLoginResult] = useState({ jwt, user });
 
+  const logOff = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("user");
+    setLoginResult({ jwt: undefined, user: undefined });
+  }
+
   return (
-    <UserContext.Provider value={loginResult}>
+    <UserContext.Provider value={{ ...loginResult, logOff }}>
       {loginResult.jwt && props.children}
 
       {!loginResult.jwt && (
