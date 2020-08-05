@@ -24,7 +24,6 @@ const CreateNoteButtonContainer = ({ updateNoteList, selectedFolder, updateSelec
         })
             .then((response) => response.json())
             .then((note) => {
-                debugger
                 updateNoteList(() => updateSelectedNote(note));
                 updateFetchStatus("SUCCEED");
             })

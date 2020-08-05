@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import FolderItem from "../components/SideBar/FolderItem";
+import FolderList from "../components/SideBar/FolderList";
 
 import UserContext from '../context/userContext';
 
@@ -28,6 +28,26 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
       });
   };
 
+  const deleteFolder = (folderId) => {
+    updateFetchStatus("STARTED");
+
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/folders/${folderId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${loginResult.jwt}`,
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        fetchFolders();
+        updateFetchStatus("SUCCEED");
+      })
+      .catch((err) => {
+        updateFetchStatus("FAILED");
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     fetchFolders();
   }, []); // eslint-disable-line
@@ -38,11 +58,12 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
       {/* {fetchStatus === "STARTED" && <div>Loading folders...</div>} */}
 
       {(fetchStatus === "SUCCEED" || folders.length) && (
-        <FolderItem
+        <FolderList
           fetchFolders={fetchFolders}
           folders={folders}
           selectedFolder={selectedFolder}
           updateSelectedFolder={updateSelectedFolder}
+          deleteFolder={deleteFolder}
         />
       )}
 
