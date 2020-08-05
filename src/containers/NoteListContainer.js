@@ -44,12 +44,14 @@ const NoteListContainer = ({
       });
   }, [selectedFolder.id]); // eslint-disable-line
 
-  //Optimistic rendering for UI
-  const UpdateStateNote = (text) => {
-    const newNote = [...noteList];
-    const newID = new Date().toISOString();
-    newNote.push({ text, id: newID });
-    updateNoteList(newNote);
+
+  // Optimistic rendering for UI
+  const createNewNote = (text) => {
+    if (noteList.find((note) => note.id === 'new')) return;
+
+    const newNotesList = [...noteList];
+    newNotesList.push({ text: '', id: 'new' });
+    updateNoteList(newNotesList);
   };
 
   return (
@@ -61,7 +63,7 @@ const NoteListContainer = ({
           noteList={noteList}
           selectedNote={selectedNote}
           updateSelectedNote={updateSelectedNote}
-          UpdateStateNote={UpdateStateNote}
+          updateStateNote={createNewNote}
         />
       )}
     </div>

@@ -1,0 +1,88 @@
+.LoginForm_container {
+    display: flex;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+  }
+  .LoginForm_signIn {
+    width: 60vw;
+    background-color: rgb(24, 24, 24);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 250px;
+  }
+  .LoginForm_form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  .LoginForm_header {
+    margin-top: 80px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #f3bf8f;
+    font-size: 46px;
+  }
+
+  .LoginForm_hr {
+    margin-bottom: 75px;
+    color: white;
+    width: 35%;
+    height: 3px;
+    background-color: white;
+    margin-top: -10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    width: 21vw;
+    align-self: center;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 7px;
+    border-color: #e0dede;
+    background-color: #e0dede;
+    padding: 7px;
+    border: none;
+    margin-bottom: 15px;
+    outline: none;
+    height: 40px;
+  }
+
+  .authentification_input-email {
+    margin-bottom: 40px;
+  }
+
+  label {
+    align-self: flex-start;
+    margin-bottom: 6px;
+  }
+
+  a {
+    text-align: right;
+    font-size: 14px;
+    font-style: italic;
+    color: white;
+  }
+
+  button {
+    margin-top: 30px;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    width: 130px;
+    color: rgb(24, 24, 24);
+    border-radius: 10px;
+    font-weight: 900;
+    font-size: 16px;
+    width: 160px;
+    box-shadow: 2px 2px rgb(74, 71, 71);
+    align-self: center;
+  }

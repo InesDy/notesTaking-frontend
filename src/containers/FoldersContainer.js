@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import FolderItem from "../components/SideBar/FolderItem";
 
-// import fetchCategories from "../fakeFetch/fetchCategories";
+import UserContext from '../context/userContext';
 
 const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
   const [folders, updateFolders] = useState([]);
   const [fetchStatus, updateFetchStatus] = useState("IDLE");
-  const token = localStorage.getItem("jwt");
+
+  const loginResult = useContext(UserContext);
 
   const getUpdatedFolder = () => {
     updateFetchStatus("STARTED");
 
     fetch("http://localhost:1337/folders", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${loginResult.jwt}`,
       },
     })
       .then((response) => response.json())
@@ -29,7 +30,7 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
 
   useEffect(() => {
     getUpdatedFolder();
-  }, []);
+  }, []); // eslint-disable-line
 
   //Optimistic rendering for UI
   const UpdateStateFolder = (name) => {

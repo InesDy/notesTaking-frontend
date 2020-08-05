@@ -12,7 +12,7 @@ const FolderItem = ({
   return (
     <div className="FolderItem">
       <NewFolderButton UpdateStateFolder={UpdateStateFolder}></NewFolderButton>
-      {folders &&
+      {folders instanceof Array &&
         folders.map((folder) => (
           <div
             className="folder"

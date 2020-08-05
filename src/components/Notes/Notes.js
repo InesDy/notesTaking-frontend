@@ -3,11 +3,11 @@ import CreateNoteButton from "./CreateNoteButton";
 
 import "./Notes.css";
 
-const NoteList = ({
+const Notes = ({
   noteList = [],
   selectedNote,
   updateSelectedNote,
-  UpdateStateNote,
+  updateStateNote,
 }) => {
   const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
 
@@ -17,7 +17,7 @@ const NoteList = ({
         <div className="NoteList_CreateNoteButton">
           <CreateNoteButton
             className="CreateNoteButton"
-            UpdateStateNote={UpdateStateNote}
+            updateStateNote={updateStateNote}
           >
             {" "}
           </CreateNoteButton>
@@ -44,4 +44,4 @@ const NoteList = ({
   );
 };
 
-export default NoteList;
+export default Notes;

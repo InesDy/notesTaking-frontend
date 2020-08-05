@@ -1,16 +1,14 @@
 import React from "react";
-import LoginPage from "./LoginPage";
 import RegistrationPage from "./RegistrationPage";
 
-import "./AuthentificationPage.css";
+import "./AuthenticationPage.css";
 
-function AuthentificationPage({ setLoginResult }) {
+const AuthenticationPage = (props) => {
   return (
-    <div className="AuthentificationPage">
-      <LoginPage setLoginResult={setLoginResult} />
-      <RegistrationPage setLoginResult={setLoginResult} />
+    <div className="AuthenticationPage">
+      {props.children}
     </div>
   );
 }
 
-export default AuthentificationPage;
+export default AuthenticationPage;
