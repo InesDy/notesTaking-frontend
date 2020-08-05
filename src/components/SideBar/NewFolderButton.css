@@ -1,10 +1,9 @@
 .NewFolderButton {
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin: 50px 20px 60px 20px;
   align-items: center;
   max-width: 100%;
-  margin-right: 10px;
 }
 
 .NewFolderButton-button {

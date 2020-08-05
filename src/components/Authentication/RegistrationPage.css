@@ -1,0 +1,86 @@
+.RegistrationPage {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.RegistrationPage_form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  text-align: center;
+  justify-content: center;
+}
+
+.RegistrationPage_hr {
+  background-color: white;
+  margin-top: -10px;
+  margin-bottom: 48px;
+  width: 18%;
+  height: 3px;
+}
+
+p {
+  width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+}
+
+span {
+  color: #f3bf8f;
+  font-weight: 4px;
+}
+
+.RegistrationPage_button--RegisterNow {
+  background-color: white;
+  color: rgb(24, 24, 24);
+  width: 160px;
+  font-size: 18.5px;
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 30px;
+  font-weight: 900;
+  align-self: center;
+}
+
+label {
+  align-self: flex-start;
+  margin-bottom: 6px;
+  color: white;
+}
+
+.RegistrationPage_input {
+  width: 100%;
+  border-radius: 7px;
+  border-color: #e0dede;
+  background-color: #e0dede;
+  padding: 7px;
+  border: none;
+  margin-bottom: 15px;
+  outline: none;
+  height: 40px;
+}
+
+.RegistrationPage_header {
+  margin-top: 100px;
+  text-transform: none;
+  color: white;
+  font-size: 46px;
+  text-align: center;
+}
+
+.RegistrationPage_button {
+  background-color: white;
+  color: #294c60;
+  width: 160px;
+  font-weight: 900;
+  font-size: 20px;
+  margin-top: 30px;
+  padding: 10px;
+  border-radius: 30px;
+  font-weight: 900;
+  align-self: center;
+}

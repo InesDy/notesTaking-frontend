@@ -5,11 +5,16 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
   const [note, updateNote] = useState();
   const [fetchStatus, updateFetchStatus] = useState("IDLE");
   const [saveStatus, updateSaveStatus] = useState("IDLE");
+  const token = localStorage.getItem("jwt");
 
   useEffect(() => {
     updateFetchStatus("STARTED");
 
-    fetch(`http://localhost:1337/notes/${selectedNote.id}`)
+    fetch(`http://localhost:1337/notes/${selectedNote.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => response.json())
       .then((receivedNote) => {
         console.log(receivedNote);
@@ -34,6 +39,8 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         ...selectedNote,
@@ -52,9 +59,7 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
 
   return (
     <div>
-      {fetchStatus === "STARTED" && <div>Loading note...</div>}
-
-      <div>saveStatus: {saveStatus}</div>
+      {fetchStatus === "STARTED" && console.log("Loading note...")}
 
       {fetchStatus === "SUCCEED" && (
         <NoteEditor

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NoteEditor from "../Editor/NoteEditor";
+import CreateIcon from "@material-ui/icons/Create";
 
 const CreateNoteButton = () => {
   // create a selected functon ()for the button//onclick to add in the NoteEditor
@@ -16,17 +17,8 @@ const CreateNoteButton = () => {
   //   };
 
   return (
-    <div className="CreateNoteButton">
-      <button
-        onClick={() => {
-          showEditor(!editor);
-          handleClick();
-          // addNewNote();
-        }}
-      >
-        Je suis un bouton
-      </button>
-      {editor ? <NoteEditor></NoteEditor> : null}
+    <div>
+      <CreateIcon></CreateIcon>
     </div>
   );
 };

@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import AppLayout from "./components/AppLayout/AppLayout";
-import LoginPage from "./components/Authentication/LoginPage";
-
+import AuthenticatedContainer from "./containers/AuthenticatedContainer";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-
-  return <>{loggedIn ? <AppLayout /> : <LoginPage />}</>;
+  return (
+    <AuthenticatedContainer>
+      <AppLayout />
+    </AuthenticatedContainer>
+  );
 }
 
 export default App;
+
+// return <>{loggedIn ? <AppLayout /> : <LoginPage />}</>;

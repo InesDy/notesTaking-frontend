@@ -6,11 +6,16 @@ import FolderItem from "../components/SideBar/FolderItem";
 const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
   const [folders, updateFolders] = useState([]);
   const [fetchStatus, updateFetchStatus] = useState("IDLE");
+  const token = localStorage.getItem("jwt");
 
-  useEffect(() => {
+  const getUpdatedFolder = () => {
     updateFetchStatus("STARTED");
 
-    fetch("http://localhost:1337/folders")
+    fetch("http://localhost:1337/folders", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => response.json())
       .then((receivedFolders) => {
         updateFolders(receivedFolders);
@@ -20,17 +25,27 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
         updateFetchStatus("FAILED");
         console.log(err);
       });
-  }, []); // eslint-disable-line
+  };
+
+  useEffect(() => {
+    getUpdatedFolder();
+  }, []);
+
+  //Optimistic rendering for UI
+  const UpdateStateFolder = (name) => {
+    const newFolders = [...folders];
+    const newID = new Date().toISOString();
+    newFolders.push({ name, id: newID });
+    updateFolders(newFolders);
+  };
 
   return (
     <div>
       {fetchStatus === "STARTED" && <div>Loading folders...</div>}
 
-      <div style={{ color: "white" }}>fetch Status: {fetchStatus}</div>
-
       {fetchStatus === "SUCCEED" && (
         <FolderItem
-          style={{ background: "blue" }}
+          UpdateStateFolder={UpdateStateFolder}
           folders={folders}
           selectedFolder={selectedFolder}
           updateSelectedFolder={updateSelectedFolder}

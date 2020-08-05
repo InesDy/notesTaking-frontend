@@ -69,7 +69,7 @@ const NoteEditor = ({ noteText, onChange, selectedNote }) => {
       updateEditorCursorPostition(currentCursorPosition);
 
       onChange(markDownAsText);
-    }, 3000);
+    }, 1500);
   };
 
   return (
@@ -80,6 +80,17 @@ const NoteEditor = ({ noteText, onChange, selectedNote }) => {
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           onEditorStateChange={onEditorStateChange}
+          //TOOLBAR
+          toolbar={{
+            inline: { inDropdown: true },
+            list: { inDropdown: true },
+            textAlign: { component: () => null },
+            link: { inDropdown: true },
+            history: { component: () => null },
+            image: { component: () => null },
+            embedded: { component: () => null },
+            link: { component: () => null },
+          }}
         />
       )}
       {!selectedNote && "No notes selected"}

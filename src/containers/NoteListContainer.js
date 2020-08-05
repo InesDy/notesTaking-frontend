@@ -8,6 +8,7 @@ const NoteListContainer = ({
 }) => {
   const [noteList, updateNoteList] = useState([]);
   const [fetchStatus, updateFetchStatus] = useState("IDLE");
+  const token = localStorage.getItem("jwt");
 
   const updateSelectedNoteText = () => {
     const selectedNoteIndex = noteList.findIndex(
@@ -27,7 +28,11 @@ const NoteListContainer = ({
   useEffect(() => {
     updateFetchStatus("STARTED");
 
-    fetch(`http://localhost:1337/notes?folder=${selectedFolder.id}`)
+    fetch(`http://localhost:1337/notes?folder=${selectedFolder.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((response) => response.json())
       .then((receivedNoteList) => {
         updateNoteList(receivedNoteList);
@@ -41,9 +46,7 @@ const NoteListContainer = ({
 
   return (
     <div>
-      {fetchStatus === "STARTED" && <div>Loading notes...</div>}
-
-      <div>fetchStatus: {fetchStatus}</div>
+      {fetchStatus === "STARTED" && console.log("Loading notes...")}
 
       {fetchStatus === "SUCCEED" && (
         <Notes

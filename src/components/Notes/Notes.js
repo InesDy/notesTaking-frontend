@@ -1,12 +1,7 @@
 import React from "react";
-// import CreateNoteButton from "../SideBar/2nd level/CreateNoteButton";
-import "./Notes.css";
+import CreateNoteButton from "../SideBar/CreateNoteButton";
 
-{
-  /* <CreateNoteButton
-            currentSideBarItem={currentSideBarItem}
-          ></CreateNoteButton> */
-}
+import "./Notes.css";
 
 const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
   const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
@@ -14,6 +9,9 @@ const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
   return (
     <div className="NoteList">
       <div className={className}>
+        <div className="NoteList_CreateNoteButton">
+          <CreateNoteButton className="CreateNoteButton"> </CreateNoteButton>
+        </div>
         {noteList &&
           noteList.map((note) => (
             <div
@@ -28,7 +26,6 @@ const NoteList = ({ noteList, selectedNote, updateSelectedNote }) => {
               {selectedNote &&
                 selectedNote.id === note.id &&
                 selectedNote.text.slice(0, 50) + "..."}
-              )};
             </div>
           ))}
         {!noteList && "Nothing selected"}
