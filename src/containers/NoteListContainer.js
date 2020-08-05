@@ -14,9 +14,12 @@ const NoteListContainer = ({
     const selectedNoteIndex = noteList.findIndex(
       (note) => selectedNote.id === note.id
     );
-    const updatedNoteList = [...noteList];
-    updatedNoteList[selectedNoteIndex].text = selectedNote.text;
-    updateNoteList(noteList);
+
+    if (selectedNoteIndex >= 0) {
+      const updatedNoteList = [...noteList];
+      updatedNoteList[selectedNoteIndex].text = selectedNote.text;
+      updateNoteList(noteList);
+    }
   };
 
   useEffect(() => {
@@ -25,7 +28,7 @@ const NoteListContainer = ({
     }
   }, [selectedNote]); // eslint-disable-line
 
-  useEffect(() => {
+  const fetchNoteList = (callBack) => {
     updateFetchStatus("STARTED");
 
     fetch(`http://localhost:1337/notes?folder=${selectedFolder.id}`, {
@@ -36,34 +39,30 @@ const NoteListContainer = ({
       .then((response) => response.json())
       .then((receivedNoteList) => {
         updateNoteList(receivedNoteList);
+        if (typeof callBack === 'function') callBack();
         updateFetchStatus("SUCCEED");
       })
       .catch((err) => {
         updateFetchStatus("FAILED");
         console.log(err);
       });
-  }, [selectedFolder.id]); // eslint-disable-line
-
-
-  // Optimistic rendering for UI
-  const createNewNote = (text) => {
-    if (noteList.find((note) => note.id === 'new')) return;
-
-    const newNotesList = [...noteList];
-    newNotesList.push({ text: '', id: 'new' });
-    updateNoteList(newNotesList);
   };
+
+  useEffect(() => {
+    fetchNoteList();
+  }, [selectedFolder.id]); // eslint-disable-line
 
   return (
     <div>
       {fetchStatus === "STARTED" && console.log("Loading notes...")}
 
-      {fetchStatus === "SUCCEED" && (
+      {(fetchStatus === "SUCCEED" || noteList.length) && (
         <Notes
+          selectedFolder={selectedFolder}
           noteList={noteList}
           selectedNote={selectedNote}
           updateSelectedNote={updateSelectedNote}
-          updateStateNote={createNewNote}
+          updateNoteList={fetchNoteList}
         />
       )}
     </div>

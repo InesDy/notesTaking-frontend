@@ -1,13 +1,15 @@
 import React from "react";
-import CreateNoteButton from "./CreateNoteButton";
+// import CreateNoteButton from "./CreateNoteButton";
 
 import "./Notes.css";
+import CreateNoteButtonContainer from "../../containers/CreateNoteButtonContainer";
 
 const Notes = ({
   noteList = [],
   selectedNote,
   updateSelectedNote,
-  updateStateNote,
+  updateNoteList,
+  selectedFolder,
 }) => {
   const className = `Notes ${!noteList ? "Notes_notSelected" : ""}`;
 
@@ -15,12 +17,17 @@ const Notes = ({
     <div className="NoteList">
       <div className={className}>
         <div className="NoteList_CreateNoteButton">
-          <CreateNoteButton
+          {/* <CreateNoteButton
             className="CreateNoteButton"
             updateStateNote={updateStateNote}
           >
             {" "}
-          </CreateNoteButton>
+          </CreateNoteButton> */}
+          <CreateNoteButtonContainer
+            updateNoteList={updateNoteList}
+            selectedFolder={selectedFolder}
+            updateSelectedNote={updateSelectedNote}
+          />
         </div>
         {noteList &&
           noteList.map((note) => (
