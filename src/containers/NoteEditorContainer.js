@@ -10,7 +10,7 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
   useEffect(() => {
     updateFetchStatus("STARTED");
 
-    fetch(`http://localhost:1337/notes/${selectedNote.id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/${selectedNote.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -35,7 +35,7 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
 
     updateSaveStatus("STARTED");
 
-    fetch(`http://localhost:1337/notes/${selectedNote.id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/notes/${selectedNote.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

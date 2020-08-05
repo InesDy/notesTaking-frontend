@@ -25,7 +25,7 @@ const RegistrationPage = () => {
     setFetching(true);
 
     axios
-      .post("http://localhost:1337/auth/local/register", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/local/register`, {
         username: inputUser,
         email: inputEmail,
         password: inputPassword,

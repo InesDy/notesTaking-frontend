@@ -31,7 +31,7 @@ const NoteListContainer = ({
   const fetchNoteList = (callBack) => {
     updateFetchStatus("STARTED");
 
-    fetch(`http://localhost:1337/notes?folder=${selectedFolder.id}`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/notes?folder=${selectedFolder.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

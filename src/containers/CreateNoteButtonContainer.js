@@ -11,7 +11,7 @@ const CreateNoteButtonContainer = ({ updateNoteList, selectedFolder, updateSelec
     const createNewNote = () => {
         updateFetchStatus("STARTED");
 
-        fetch(`http://localhost:1337/notes`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/notes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

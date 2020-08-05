@@ -21,7 +21,7 @@ const NewFolderButtonContainer = ({ fetchFolders }) => {
 
         updateFetchStatus("STARTED");
 
-        fetch(`http://localhost:1337/folders`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/folders`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

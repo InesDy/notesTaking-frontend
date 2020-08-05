@@ -19,7 +19,7 @@ const LoginPage = ({ setLoginResult }) => {
     setFetching(true);
 
     axios
-      .post("http://localhost:1337/auth/local/", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/local/`, {
         identifier: inputEmail,
         password: inputPassword,
       })

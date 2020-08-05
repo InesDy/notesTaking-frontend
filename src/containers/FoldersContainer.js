@@ -12,7 +12,7 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
   const fetchFolders = () => {
     updateFetchStatus("STARTED");
 
-    fetch("http://localhost:1337/folders", {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/folders`, {
       headers: {
         Authorization: `Bearer ${loginResult.jwt}`,
       },
