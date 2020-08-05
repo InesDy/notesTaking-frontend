@@ -1,26 +1,16 @@
-import React, { useState } from "react";
-import AppLayoutContainer from "./containers/AppLayoutContainer";
-import mockCategories from "./mock-data/note-categories";
-import mockFolders from "./mock-data/folders";
-import LoginPage from "./components/Authentication/LoginPage";
-
+import React from "react";
+import AppLayout from "./components/AppLayout/AppLayout";
+import AuthenticatedContainer from "./containers/AuthenticatedContainer";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-
   return (
-    <>
-      {loggedIn ? (
-        <AppLayoutContainer
-          mockCategories={mockCategories}
-          mockFolders={mockFolders}
-        />
-      ) : (
-        <LoginPage />
-      )}
-    </>
+    <AuthenticatedContainer>
+      <AppLayout />
+    </AuthenticatedContainer>
   );
 }
 
 export default App;
+
+// return <>{loggedIn ? <AppLayout /> : <LoginPage />}</>;

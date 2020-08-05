@@ -1,58 +1,42 @@
 import React, { useState } from "react";
-import SideBar from "../SideBar/SideBar";
-import NotesCategories from "../Notes/NotesCategories";
-import TrashLink from "../SideBar/TrashLink";
-import Notes from "../Notes/Notes";
-import NoteList from "../Notes/NoteList";
-import Note from "../Notes/Note";
-import NoteEditor from "../Editor/NoteEditor";
-import SideBarItem from "../SideBar/SideBarItem";
-import NewFolderButton from "../SideBar/newFolderButton";
-import SearchBar from "../SideBar/SearchBar";
-
-import Navigation from "../Navigation/Navigation";
+import FoldersContainer from "../../containers/FoldersContainer";
+import NoteEditorContainer from "../../containers/NoteEditorContainer";
+import NoteListContainer from "../../containers/NoteListContainer";
 
 import "./AppLayout.css";
 
-const AppLayout = ({
-  folders,
-  handleItemClick,
-  //generic
-  currentSideBarItem,
-  onSubmitHandler,
-  selectedNote,
-  selectNote,
-  itemSelected,
-  //specific
-  addNewFolder,
-  editor,
-  contentNote,
-  changeContentNote,
-}) => {
+const AppLayout = () => {
+  const [selectedFolder, updateSelectedFolder] = useState();
+  const [selectedNote, updateSelectedNote] = useState();
+
+  const handleUpdateSelectedFolder = (selectedFolder) => {
+    updateSelectedNote();
+    updateSelectedFolder(selectedFolder);
+  };
   return (
     <div className="AppLayout">
-      <SideBar>
-        <Navigation
-          itemSelected={itemSelected}
-          folders={folders}
-          handleItemClick={handleItemClick}
-          addNewFolder={addNewFolder}
+      <FoldersContainer
+        className="FoldersContainer"
+        selectedFolder={selectedFolder}
+        updateSelectedFolder={handleUpdateSelectedFolder}
+      />
+
+      {selectedFolder && (
+        <NoteListContainer
+          className="NoteListContainer"
+          selectedFolder={selectedFolder}
+          selectedNote={selectedNote}
+          updateSelectedNote={updateSelectedNote}
         />
-        <NewFolderButton addNewFolder={addNewFolder} />
-      </SideBar>
+      )}
 
-      <Notes
-        className="Notes"
-        currentSideBarItem={currentSideBarItem}
-        selectNote={selectNote}
-      />
-
-      <NoteEditor
-        onChange={changeContentNote}
-        initialValue={contentNote.content}
-        editor={editor}
-        selectedNote={selectedNote}
-      />
+      {selectedNote && (
+        <NoteEditorContainer
+          className="NoteEditorContainer"
+          selectedNote={selectedNote}
+          updateSelectedNote={updateSelectedNote}
+        />
+      )}
     </div>
   );
 };

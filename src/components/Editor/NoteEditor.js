@@ -1,64 +1,76 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, convertFromRaw, EditorState } from "draft-js";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
 
-import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+let afterTypingWaitTimer;
 
-import "./NoteEditor.css";
-
-let timer;
-
-const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
+const NoteEditor = ({ noteText, onChange, selectedNote }) => {
   const className = `NoteEditor ${!selectedNote ? "NoteEditor_noNotes" : ""}`;
 
-  /**Initial state is determined with a if statement-  if there is a
-   * note selected and this note has children then display  the content
-   */
-  let initialEditorState;
-  if (selectedNote && selectedNote.content) {
-    initialEditorState = EditorState.createWithContent(
-      convertFromRaw(markdownToDraft(selectedNote.content))
-    );
-  } else {
-    initialEditorState = EditorState.createWithContent(
-      convertFromRaw(markdownToDraft(initialValue))
-    );
-  }
-
-  /**Allows the change in the editor and keep the state after 3 seconds
-   * The timer starts over when a new change is made
-   * */
-  const onEditorChange = (newEditorState) => {
-    updateEditorState(newEditorState);
-    const value = draftToMarkdown(
-      convertToRaw(newEditorState.getCurrentContent())
-    );
-
-    clearTimeout(timer);
-
-    timer = setTimeout(() => {
-      console.log(newEditorState);
-      onChange(value);
-    }, 3000);
+  const buildEditorState = (text) => {
+    const rawData = markdownToDraft(text);
+    const contentState = convertFromRaw(rawData);
+    let newEditorState = EditorState.createWithContent(contentState);
+    return newEditorState;
   };
 
-  const [editorState, updateEditorState] = useState(initialEditorState);
+  let initialState = noteText
+    ? buildEditorState(noteText)
+    : EditorState.createEmpty();
 
-  /**
-   * On `selectedNote` prop change, re-init editor state
-   * update everyytimne there is a change in the content of the current selected note and update it by mounting it again
-   */
-  useEffect(() => {
-    if (selectedNote && selectedNote.content) {
-      updateEditorState(
-        EditorState.createWithContent(
-          convertFromRaw(markdownToDraft(selectedNote.content))
-        )
+  const [editorState, updateEditorState] = useState(initialState);
+  const [editorCursorPosition, updateEditorCursorPostition] = useState();
+
+  const isInitialMount = useRef(true);
+
+  const setPosition = () => {
+    if (editorCursorPosition) {
+      const newStateWithPosition = EditorState.forceSelection(
+        editorState,
+        editorCursorPosition
       );
+
+      console.log("position", newStateWithPosition);
+
+      updateEditorState(newStateWithPosition);
     }
-  }, [selectedNote]);
+  };
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      const newEditorState = buildEditorState(noteText);
+
+      updateEditorState(newEditorState);
+      setPosition();
+    }
+  }, [noteText]); // eslint-disable-line
+
+  const onEditorStateChange = (draftJsState) => {
+    updateEditorState(draftJsState);
+
+    clearTimeout(afterTypingWaitTimer);
+
+    afterTypingWaitTimer = setTimeout(() => {
+      const content = draftJsState.getCurrentContent();
+      const rawDraftContentState = convertToRaw(content);
+      const markDownAsText = draftToMarkdown(rawDraftContentState, {
+        remarkablePreset: "commonmark",
+        remarkableOptions: {
+          html: true,
+        },
+      });
+
+      const currentCursorPosition = draftJsState.getSelection();
+      updateEditorCursorPostition(currentCursorPosition);
+
+      onChange(markDownAsText);
+    }, 1500);
+  };
 
   return (
     <div className={className}>
@@ -67,17 +79,28 @@ const NoteEditor = ({ selectedNote, initialValue = "", onChange }) => {
           editorState={editorState}
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
-          onEditorStateChange={onEditorChange}
+          onEditorStateChange={onEditorStateChange}
+          //TOOLBAR
+          toolbar={{
+            inline: { inDropdown: true },
+            list: { inDropdown: true },
+            textAlign: { component: () => null },
+            link: { inDropdown: true },
+            history: { component: () => null },
+            image: { component: () => null },
+            embedded: { component: () => null },
+            link: { component: () => null },
+          }}
         />
       )}
-
       {!selectedNote && "No notes selected"}
     </div>
   );
 };
 
 NoteEditor.propTypes = {
-  editor: PropTypes.node,
+  noteText: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default NoteEditor;
