@@ -1,6 +1,11 @@
 import React from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
 
+const isNotTrashOrGeneral = (folderName) => (
+  folderName.toLowerCase() !== "trash" &&
+  folderName.toLowerCase() !== "general"
+)
+
 const FolderItem = ({
   folder,
   selectedFolder,
@@ -15,7 +20,7 @@ const FolderItem = ({
   >
     <div className="folder__name">{folder.name}</div>
 
-    {folder.name.toLowerCase() !== "trash" && (
+    {isNotTrashOrGeneral(folder.name) && (
       <div className="folder__actions">
         <DeleteIcon
           onClick={(event) => {
