@@ -27,3 +27,8 @@
   input {
     width: 100%;
   }
+
+  .newFolderButton_input,
+  .NewFolderButton form {
+    width: 100%;
+  }
