@@ -3,7 +3,7 @@ import axios from "axios";
 
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 
-const RegisterContainer = () => {
+const RegisterContainer = ({ setLoginResult }) => {
     const [inputUser, changeInputUser] = useState("");
     const [inputEmail, changeInputEmailValue] = useState("");
     const [inputPassword, changeInputPasswordValue] = useState("");
@@ -33,9 +33,13 @@ const RegisterContainer = () => {
             })
 
             .then((response) => {
-                //handle success
-                console.log("Well done");
-                response.data.user();
+                setLoginResult({
+                    user: response.data.user,
+                    jwt: response.data.jwt
+                });
+
+                localStorage.setItem("user", JSON.stringify(response.data.user));
+                localStorage.setItem("jwt", response.data.jwt);
                 setFetching(false);
             })
 
