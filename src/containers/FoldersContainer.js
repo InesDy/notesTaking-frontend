@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import FolderList from "../components/SideBar/FolderList";
 
-import UserContext from '../context/userContext';
+import UserContext from "../context/userContext";
 
 const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
   const [folders, updateFolders] = useState([]);
@@ -32,7 +32,7 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
     updateFetchStatus("STARTED");
 
     fetch(`${process.env.REACT_APP_BACKEND_URL}/folders/${folderId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${loginResult.jwt}`,
       },
@@ -52,7 +52,6 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
     fetchFolders();
   }, []); // eslint-disable-line
 
-
   return (
     <div>
       {/* {fetchStatus === "STARTED" && <div>Loading folders...</div>} */}
@@ -66,8 +65,6 @@ const FoldersContainer = ({ selectedFolder, updateSelectedFolder }) => {
           deleteFolder={deleteFolder}
         />
       )}
-
-      <button onClick={loginResult.logOff}>Logout</button>
     </div>
   );
 };

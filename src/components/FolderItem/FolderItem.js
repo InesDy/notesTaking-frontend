@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import DeleteIcon from "@material-ui/icons/Delete";
+import "./FolderItem.css";
 
-const isNotTrashOrGeneral = (folderName) => (
+const isNotTrashOrGeneral = (folderName) =>
   folderName.toLowerCase() !== "trash" &&
-  folderName.toLowerCase() !== "general"
-)
+  folderName.toLowerCase() !== "general";
 
 const FolderItem = ({
   folder,
@@ -21,15 +21,18 @@ const FolderItem = ({
     <div className="folder__name">{folder.name}</div>
 
     {isNotTrashOrGeneral(folder.name) && (
-      <div className="folder__actions">
+      <div>
         <DeleteIcon
+          style={{
+            fontSize: "18px",
+            position: "absolute",
+            alignSelf: "flex-end",
+          }}
           onClick={(event) => {
             event.stopPropagation();
             deleteFolder(folder.id);
           }}
-        >
-          Delete
-        </DeleteIcon>
+        ></DeleteIcon>
       </div>
     )}
   </div>

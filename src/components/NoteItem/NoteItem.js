@@ -1,5 +1,6 @@
 import React from "react";
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+import "./NoteItem.css";
 
 const NoteItem = ({
   note,
@@ -23,6 +24,7 @@ const NoteItem = ({
       selectedNote.text.slice(0, 50) + "..."}
 
     <DeleteSweepIcon
+      style={{ fontSize: "18px", marginLeft: "80%", position: "absolute" }}
       onClick={(event) => {
         event.stopPropagation();
         onDeleteButtonClick(note.id);

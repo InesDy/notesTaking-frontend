@@ -48,7 +48,8 @@ const RegistrationPage = () => {
       <h1 className="RegistrationPage_header"> Hi there,</h1>
       <hr className="RegistrationPage_hr" />
       <p>
-        Create your own space and start editing with <span>Write.</span>
+        Create your own space and start editing with{" "}
+        <span className="RegistrationPage_span">Write.</span>
       </p>
       {!inputField && (
         <button

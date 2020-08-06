@@ -80,6 +80,7 @@ const NoteEditor = ({ noteText, onChange, selectedNote }) => {
           wrapperClassName="demo-wrapper"
           editorClassName="demo-editor"
           onEditorStateChange={onEditorStateChange}
+          style={{ color: "white" }}
           //TOOLBAR
           toolbar={{
             inline: { inDropdown: true },
