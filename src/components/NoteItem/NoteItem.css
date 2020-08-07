@@ -1,4 +1,11 @@
-.Notes-item {
+.Notes-item,
+.Notes-item--active {
   display: flex;
   position: relative;
 }
+
+
+
+/* .Notes-item:hover {
+  background: rgba(255, 255, 255, 0.5)
+} */

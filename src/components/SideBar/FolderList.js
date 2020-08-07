@@ -28,15 +28,18 @@ const FolderList = ({
       </div>
       <NewFolderButtonContainer fetchFolders={fetchFolders} />
       {folders instanceof Array &&
-        folders.map((folder) => (
-          <FolderItem
-            key={folder.id}
-            folder={folder}
-            selectedFolder={selectedFolder}
-            updateSelectedFolder={updateSelectedFolder}
-            deleteFolder={deleteFolder}
-          />
-        ))}
+        folders.map((folder) => {
+          console.log("folder", folder);
+          return (
+            <FolderItem
+              key={folder.id}
+              folder={folder}
+              selectedFolder={selectedFolder}
+              updateSelectedFolder={updateSelectedFolder}
+              deleteFolder={deleteFolder}
+            />
+          );
+        })}
     </div>
   );
 };

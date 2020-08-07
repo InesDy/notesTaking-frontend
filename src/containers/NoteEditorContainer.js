@@ -57,7 +57,13 @@ const NoteEditorContainer = ({ selectedNote, updateSelectedNote }) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div
+      style={{
+        width: "100%",
+        backgroundColor: "rgb(45,45,45)",
+        borderLeft: "solid 1.8px rgba(255, 255, 255, 0.2)",
+      }}
+    >
       {fetchStatus === "STARTED" && console.log("Loading note...")}
 
       {fetchStatus === "SUCCEED" && (

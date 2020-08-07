@@ -1,0 +1,8 @@
+.CreateNoteButton {
+    cursor: pointer;
+    border-bottom: solid 2px#ffc49b;
+}
+
+.CreateNoteButton>svg:hover {
+    color: #ffc49b;
+}

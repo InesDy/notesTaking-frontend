@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .RegisterForm_form {
   display: flex;
   flex-direction: column;
@@ -35,14 +36,7 @@ p {
 }
 
 .RegisterForm_button--RegisterNow {
-  background-color: white;
-  color: rgb(24, 24, 24);
-  width: 160px;
-  font-size: 16px;
   margin-top: 40px;
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: 900;
   align-self: center;
 }
 
@@ -73,14 +67,8 @@ label {
 }
 
 .RegisterForm_button {
-  background-color: white;
-  color: #294c60;
-  width: 160px;
-  font-weight: 900;
-  font-size: 16px;
-  margin-top: 30px;
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: 900;
+
+  margin-top: 50px;
+
   align-self: center;
 }

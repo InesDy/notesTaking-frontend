@@ -7,6 +7,7 @@
   width: 300px;
   height: 100vh;
 }
+
 .FolderList_logout-button {
   background-color: rgba(255, 255, 255, 0.5);
   font-size: 11px;
@@ -17,13 +18,14 @@
   margin-top: 0;
 }
 
-.folder {
+.folder,
+.folder--active {
   justify-content: space-between;
   font-size: 15px;
   font-weight: bolder;
   cursor: pointer;
   padding: 10px 20px 10px 8px;
-  border-bottom: solid 1.8px rgba(255, 255, 255, 0.2);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   margin-bottom: 10px;
 }

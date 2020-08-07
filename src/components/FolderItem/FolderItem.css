@@ -1,7 +1,13 @@
-.folder {
+.folder,
+.folder--active {
   display: flex;
   position: relative;
 }
+
 .folder__name {
   justify-content: flex-start;
+}
+
+.folder--active {
+  background-color: rgb(65, 65, 66);
 }

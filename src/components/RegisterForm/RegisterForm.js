@@ -1,5 +1,6 @@
 import React from "react";
 import "./RegisterForm.css";
+import Button from "@material-ui/core/Button";
 
 const RegisterForm = ({
   inputField,
@@ -18,12 +19,11 @@ const RegisterForm = ({
       <span className="RegisterForm_span">Write.</span>
     </p>
     {!inputField && (
-      <button
-        className="RegisterForm_button--RegisterNow"
-        onClick={() => showInputField(!inputField)}
-      >
-        Register now!
-      </button>
+      <div className="RegisterForm_button--RegisterNow">
+        <Button onClick={() => showInputField(!inputField)} variant="contained">
+          Register now!
+        </Button>
+      </div>
     )}
 
     {inputField ? (
@@ -53,13 +53,15 @@ const RegisterForm = ({
             onChange={onPasswordInputChange}
             disabled={fetching}
           />
-          <button
-            className="RegisterForm_button"
-            onClick={onFormSubmit}
-            disabled={fetching}
-          >
-            Sign Up
-          </button>
+          <div style={{ marginTop: "50px" }}>
+            <Button
+              className="RegisterForm_button"
+              onClick={onFormSubmit}
+              variant="contained"
+            >
+              Sign Up
+            </Button>
+          </div>
         </form>
       </div>
     ) : null}

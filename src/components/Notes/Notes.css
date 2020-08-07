@@ -3,6 +3,7 @@
   justify-content: flex-end;
   padding: 5px 20px 5px 5px;
   align-items: right;
+  border-bottom: solid 1px rgb(62, 62, 62);
 }
 
 .NoteList {
@@ -27,7 +28,8 @@
   border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.Notes-item {
+.Notes-item,
+.Notes-item--active {
   display: flex;
   padding: 20px;
   width: 100%;
@@ -35,8 +37,13 @@
   font-size: 12px;
   min-height: 100px;
   background-color: rgb(42, 42, 42);
-  border-top: solid 1.8px rgba(255, 255, 255, 0.2);
-  border-bottom: solid 1.8px rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.2);
   max-width: 100%;
+  cursor: pointer;
+}
+
+.Notes-item--active {
+  background-color: rgb(34, 35, 36);
+  border-left: 4px rgb(91, 189, 249) solid;
+
 }

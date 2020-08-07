@@ -6,8 +6,6 @@
   align-items: center;
 }
 
-.FoldersContainer {
-}
 
 .NoteListContainer {
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
@@ -44,4 +42,17 @@
 
 .DraftEditor-root {
   color: rgba(255, 255, 255, 0.817);
+}
+
+.demo-editor.rdw-editor-main {
+  padding-left: 10px;
+}
+
+#rdw-wrapper-4109 {
+  height: 100%;
+}
+
+
+.rdw-dropdown-selectedtext a {
+  color: black;
 }

@@ -34,7 +34,7 @@ p {
   font-weight: 4px;
 }
 
-.RegistrationPage_button--RegisterNow {
+/* .RegistrationPage_button--RegisterNow {
   background-color: white;
   color: rgb(24, 24, 24);
   width: 160px;
@@ -44,7 +44,7 @@ p {
   border-radius: 10px;
   font-weight: 900;
   align-self: center;
-}
+} */
 
 label {
   align-self: flex-start;
