@@ -4,6 +4,7 @@ import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, convertFromRaw, EditorState } from "draft-js";
 import { draftToMarkdown, markdownToDraft } from "markdown-draft-js";
+import "./NoteEditor.css";
 
 let afterTypingWaitTimer;
 

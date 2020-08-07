@@ -10,3 +10,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.rdw-editor-wrapper {
+  height: 100%;
+}
+
+.rdw-editor-main {
+  height: 100%;
+}
+
+.rdw-dropdown-optionwrapper {
+  color: black;
+}
